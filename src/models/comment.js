@@ -12,23 +12,23 @@ class Comment {
   }
  
   // `Comment.prototype.findImage(imageId)`
-  findImage(imageId) {
-    let activeImage = Image.all[imageId];
-      // Given an`int` for an image id, returns the image object with that id
-    let imageObj = {
-      id: this.id,
-      commentContent: this.commentContent
-    };
-    // Before return - adds current comment to image's comments property
-    activeImage.comments.push(imageObj);
-    return activeImage;
-  }
+    findImage(imageId) {
+        const activeImage = Image.all[imageId];
+        // Given an`int` for an image id, returns the image object with that id
+        const { id, commentContent } = this;
+        // Before return - adds current comment to image's comments property
+        activeImage.comments = [
+            ...activeImage.comments,
+            { id, commentContent }
+        ]
+        return activeImage
+    }
     // `Comment.prototype.commentEl()`
     //  Returns a string of html
     //  Html has an`li` tag with an`id` field and shows the comment
     commentEl() {
         return `<li class="comment" id=${this.id}">
-        <p>${this.commentContent}</p>
+        <h4>${this.commentContent}</h4>
         </li>`;
     }
 }
